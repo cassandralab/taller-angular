@@ -8,8 +8,9 @@ angular.module('MainCtrl', ['MessageService']).controller('MainController', func
 	$scope.new = function(){
 		if($scope.newMessage){
 			Message.add($scope.newMessage).success(function(data){
-				$scope.messages.push(newMessage);
+				$scope.messages.push(data);
 			});
+			$scope.newMessage = '';
 		}
 	};
 });

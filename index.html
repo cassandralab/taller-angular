@@ -5,6 +5,7 @@
 		<title>My angularJS app - bitch</title>
 		 <!-- Styles -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./css/index.css">
 		<!-- Angular -->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 		<script type="text/javascript" src="https://code.angularjs.org/1.2.26/angular-route.min.js"></script>
@@ -20,14 +21,21 @@
 			<fieldset>				
 				<legend><h1>Message board</h1></legend>
 			</fieldset>
-			
-			<input type="text" class="form-control" ng-model="newMessage" />
-			<button class="btn btn-primary" ng-click="new()">Send</button>
-			<ul>
-				<li ng-repeat="message in messages">
-					{{ message.content }}
-				</li>
-			</ul>
+			<form ng-submit="new()">
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="newMessage" />
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary pull-right col-md-3">Send</button>
+				</div>			
+			</form>
+			<div class="messages col-md-12">
+				<div ng-repeat="message in messages | orderBy: 'createdOn' : true" class="">
+					<span>
+						{{ message.createdOn |date:'dd/MM/yyyy h:mm a' }} - {{ message.content }} 
+					</span>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
@@ -50,5 +58,12 @@ git push origin master // commit repositorio
 git push
 
 Angular DEBE ir en el head
+
+
+
+
+
+
+git clone git@github.com:cassandralab/proxy-angular.git // ssh en github
 -->
 
