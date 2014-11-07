@@ -9,6 +9,9 @@
 		<!-- Angular -->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 		<script type="text/javascript" src="https://code.angularjs.org/1.2.26/angular-route.min.js"></script>
+		<!-- LIBS -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.8.0/angular-moment.min.js"></script>
 		<!-- App -->
 		<script type="text/javascript" src="./js/app.js"></script>
 		<!-- Controllers -->
@@ -20,22 +23,24 @@
 		<div class="container">
 			<fieldset>				
 				<legend><h1>Message board</h1></legend>
-			</fieldset>
-			<form ng-submit="new()">
-				<div class="form-group">
-					<input type="text" class="form-control" ng-model="newMessage" />
-				</div>
-				<div class="form-group">
-					<button class="btn btn-primary pull-right col-md-3">Send</button>
-				</div>			
-			</form>
-			<div class="messages col-md-12">
-				<div ng-repeat="message in messages | orderBy: 'createdOn' : true" class="">
-					<span>
-						{{ message.createdOn |date:'dd/MM/yyyy h:mm a' }} - {{ message.content }} 
+				<form ng-submit="new()">
+					<div class="form-group">
+						<input type="text" class="form-control" ng-model="newMessage" />
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary pull-right col-md-3">Send</button>
+					</div>			
+				</form>
+				<div ng-repeat="message in messages track by $index | orderBy: 'createdOn' : true" class="messages col-md-12">
+					<span class="message">
+						<span class="close pull-right" ng-click="remove(message._id)">&times;</span>
+					 	{{ message.content }} 						 	
+					 	<small am-time-ago="message.createdOn"></small>
+					 	<!-- <small>{{ message.createdOn | date:'dd/MMM/yyyy h:mm a' }}</small> -->
 					</span>
+					<!--<span class="glyphicon glyphicon-minus-sign"></span>-->
 				</div>
-			</div>
+			</fieldset>
 		</div>
 	</body>
 </html>
@@ -65,5 +70,7 @@ Angular DEBE ir en el head
 
 
 git clone git@github.com:cassandralab/proxy-angular.git // ssh en github
--->
 
+
+web sockets
+-->

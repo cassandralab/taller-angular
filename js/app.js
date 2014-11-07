@@ -1,4 +1,4 @@
-var app = angular.module('tallerAngular', ['ngRoute', 'MainCtrl']);
+var app = angular.module('tallerAngular', ['ngRoute', 'MainCtrl', 'angularMoment']);
 
 app.config(function($routeProvider, $locationProvider){
 	$routeProvider.otherwise('/');
